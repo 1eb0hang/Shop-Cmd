@@ -1,23 +1,33 @@
 #pragma once
+#include "../Transaction/Transaction.h"
+
+#include <vector>
 
 class Program{
 public:
-	enum Page{
+	enum Pages{
 		PRODUCTS,
 		ACCOUNT,
 		CHECKOUT
 	};
 	
-	//Program();
+	Program();
 	//~Program();
 	
 	void ProductsPage();
-	void SelectProduct();
+	void SelectProduct(Product::Products selection);
 	
 	void AccountPage();
+	//void EnterAccountDetails();
+	
 	void CheckOutPage();
+
+	void Select(Pages currentPage);
 	void Run();
+
 	
 private:
-	Page page;
+	Pages page;
+	std::vector<Product> basket = {};
+	Transaction transaction;
 };

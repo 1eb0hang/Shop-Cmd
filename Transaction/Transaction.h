@@ -4,16 +4,15 @@
 #include <string>
 #include <vector>
 
-class Transaction : public Product{
+class Transaction{
 public:
 	
 	//std::string GetProductList(){}
-	//Transaction(){}
+	Transaction();
 
 	//Transaction();
 	
 	std::string GetBasket();
-
 private:
-	std::vector<std::string> basket {};
+	std::vector<std::string> basket = {};
 };
