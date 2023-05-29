@@ -6,10 +6,17 @@
 
 Program::Program(){
 	page = Program::Pages::PRODUCTS;
+	system("clear");
+
+}
+
+Program::~Program(){
+	//system("clear");
+	std::cout<<"clear";
 }
 
 void Program::ProductsPage(){
-	system("clear");
+	Product::Products price;
 	std::array<std::string, 14> products {	
 		"BREAD",
 		"BUNS",
@@ -29,12 +36,13 @@ void Program::ProductsPage(){
 	
 	std::cout<<"############   PRODUCTS   ############\n";
 	for(int i=0; i<products.size(); i+=1){
-		std::cout<<"["<<i<<"]"<<"\t"<<products[i]<<std::endl;
+		price = static_cast<Product::Products>(i);
+		std::cout<<"["<<i<<"]"<<"\t"<<products[i]<<"\t\tR"<<product.GetPrice(price)<<std::endl;
 	}
 	
 	std::cout<<"\n\n[-1]\tGot to CHECKOUT\n";
 }
-
+/*
 void Program::SelectProduct(Product::Products selection){
 	switch(selection){
 		case Product::Products::BREAD:
@@ -176,7 +184,8 @@ void Program::SelectProduct(Product::Products selection){
 
 /*void Program::AcountPage(){
 	//
-}*/
+}
+*/
 
 //void Program::EnterAccountDetails(){}
 
@@ -192,6 +201,7 @@ void Program::CheckOutPage(){
 
 //void Program::CheckOut(){}
 
+
 void Program::Select(Pages currentPage){
 	std::cout<<"\n\nPlease select from the list above\n\n\n ";
 	int selection;
@@ -200,7 +210,8 @@ void Program::Select(Pages currentPage){
 	switch(currentPage){
 		case Program::Pages::PRODUCTS:
 			if(selection<=0){
-				SelectProduct((Product::Products)selection);
+				//SelectProduct((Product::Products)selection);
+				std::cout<<"S;ecet\n";
 			}else{
 				currentPage = Program::Pages::CHECKOUT;
 			}

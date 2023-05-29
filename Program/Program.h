@@ -1,5 +1,6 @@
 #pragma once
 #include "../Transaction/Transaction.h"
+#include "../Product/Product.h"
 
 #include <vector>
 
@@ -12,7 +13,7 @@ public:
 	};
 	
 	Program();
-	//~Program();
+	~Program();
 	
 	void ProductsPage();
 	void SelectProduct(Product::Products selection);
@@ -28,6 +29,7 @@ public:
 	
 private:
 	Pages page;
+	Product product;
 	std::vector<Product> basket = {};
 	Transaction transaction;
 };

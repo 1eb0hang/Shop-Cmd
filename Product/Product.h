@@ -1,8 +1,9 @@
 #pragma once
+#include <array>
 
 class Product{
 public:
-	enum Products{
+	enum Products : unsigned int{
 		BREAD,
 		BUNS,
 		MILK,
@@ -23,7 +24,27 @@ public:
 	float price;
 	int quantity;
 	
-	Product(Products pName);
-	Product(Products pName, float pPrice, int pQuantity);
+	Product();
+	Product(Products pName, int pQuantity);
+	
+	float GetPrice(Products product);
+	
+private:
+	std::array<float, 14> prices {
+		15.0,
+		15.0,
+		20.0,
+		25.0,
+		23.0,
+		15.0,
+		40.0,
+		65.0,
+		43.0,
+		45.0,
+		150.0,
+		250.0,
+		10.0,
+		100.0
+	};
 	
 };
