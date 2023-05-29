@@ -1,0 +1,29 @@
+
+
+
+Write a c++ program to calculate the charges for three customers based on their
+purchase details, taking into account various factors such as base charge, item
+charge, discounts based on purchase amount, and more. The program should prompt
+the user for the necessary information and display the calculated charges for each
+customer in a specified format
+
+charge = base_charge + items * item_charge
+
+Thinking of having diffrent levels of the program:
+
+lvl 1 - Menu
+
+	PRODUCTS
+	ACCOUNT
+	CHECKOUT
+
+lvl 2 
+PRODUCTS
+	{list of all the products, with numbers to show how to select each}
+	
+ACCOUNT
+	{account details, include coupons, discounts, etc}
+	
+CHECKOUT
+	{list of products about to be bought with prices and descounts}
+	{option to check out with receit}

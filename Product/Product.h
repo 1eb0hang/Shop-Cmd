@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <array>
 
 class Product{
@@ -28,8 +29,27 @@ public:
 	Product(Products pName, int pQuantity);
 	
 	float GetPrice(Products product);
+	std::string GetName(Products product);
 	
 private:
+	
+	std::array<std::string, 14> names {	
+		"BREAD",
+		"BUNS",
+		"MILK",
+		"JUICE",
+		"SODA",
+		"TEA",
+		"COFFEE",
+		"OATS",
+		"CHEESE",
+		"POLONY",
+		"ACHAR",
+		"NAPPIES",
+		"AIRTIME",
+		"DATA"
+	};
+	
 	std::array<float, 14> prices {
 		15.0,
 		15.0,

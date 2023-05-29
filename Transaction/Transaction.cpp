@@ -13,3 +13,9 @@ std::string Transaction::GetBasket(){
 	}
 		return strBasket;
 }
+
+Transaction::strProduct::strProduct(std::string productName, int productQuanitiy, float productTPrice){
+	name = productName;
+	quantity = productQuanitiy;
+	totalPrice = productTPrice;
+}

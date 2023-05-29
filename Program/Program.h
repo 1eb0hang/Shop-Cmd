@@ -2,7 +2,8 @@
 #include "../Transaction/Transaction.h"
 #include "../Product/Product.h"
 
-#include <vector>
+#include <string>
+#include <array>
 
 class Program{
 public:
@@ -16,7 +17,7 @@ public:
 	~Program();
 	
 	void ProductsPage();
-	void SelectProduct(Product::Products selection);
+	void SelectProduct(int selection);
 	
 	void AccountPage();
 	//void EnterAccountDetails();
@@ -30,6 +31,21 @@ public:
 private:
 	Pages page;
 	Product product;
-	std::vector<Product> basket = {};
+	std::array<Product, 14> basket {
+		Product(Product::Products::BREAD, 0),
+		Product(Product::Products::BUNS, 0),
+		Product(Product::Products::MILK, 0),
+		Product(Product::Products::JUICE, 0),
+		Product(Product::Products::SODA, 0),
+		Product(Product::Products::TEA, 0),
+		Product(Product::Products::COFFEE, 0),
+		Product(Product::Products::OATS, 0),
+		Product(Product::Products::CHEESE, 0),
+		Product(Product::Products::POLONY, 0),
+		Product(Product::Products::ACHAR, 0),
+		Product(Product::Products::NAPPIES, 0),
+		Product(Product::Products::AIRTIME, 0),
+		Product(Product::Products::DATA, 0),
+	};
 	Transaction transaction;
 };

@@ -11,9 +11,9 @@
 
 int main(){
 	Program program;
-	program.ProductsPage();
-	//Program::Pages currentPage = Program::Pages::PRODUCTS;
-	//program.Select(currentPage);
+	program.CheckOutPage();
+	Program::Pages currentPage = Program::Pages::PRODUCTS;
+	program.Select(currentPage);
 	//system("sleep 3");
 	//program.CheckOutPage();
 	//Transaction transA;
