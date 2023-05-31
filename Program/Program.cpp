@@ -7,6 +7,8 @@
 Program::Program(){
 	page = Program::Pages::PRODUCTS;
 	system("clear");
+	discount = (Transaction::Discount)0;
+	ProductsPage();
 
 }
 
@@ -72,8 +74,6 @@ void Program::SelectProduct(int selection){
 			basket[3].quantity +=1;
 			ProductsPage();
 			std::cout<<"\n JUICE has been added to the basket";
-			system("sleep 3");
-			ProductsPage();
 
 			break;
 		
@@ -82,9 +82,7 @@ void Program::SelectProduct(int selection){
 			basket[4].quantity +=1;
 			ProductsPage();
 			std::cout<<"\n SODA has been added to the basket";
-			system("sleep 3");
-			ProductsPage();
-
+			
 			break;
 		
 		case Product::Products::TEA:
@@ -107,8 +105,6 @@ void Program::SelectProduct(int selection){
 			basket[7].quantity +=1;
 			ProductsPage();
 			std::cout<<"\n OATS has been added to the basket";
-			system("sleep 3");
-			ProductsPage();
 
 			break;
 		
@@ -132,8 +128,6 @@ void Program::SelectProduct(int selection){
 			basket[10].quantity +=1;
 			ProductsPage();
 			std::cout<<"\n ACHAR has been added to the basket";
-			system("sleep 3");
-			ProductsPage();
 
 			break;
 		
@@ -164,8 +158,6 @@ void Program::SelectProduct(int selection){
 		default:
 			ProductsPage();
 			std::cout<<"\n\nPlease choose from the options provided"<<std::endl;
-			system("sleep 3");
-			ProductsPage();
 
 			break;
 		
@@ -173,12 +165,13 @@ void Program::SelectProduct(int selection){
 }
 
 
-/*void Program::AcountPage(){
-	//
+void Program::EnterAccountDetails(){
+	bool inputCorrect = false;
+	while(!inputCorrect){
+		transaction.SetAccountDetails(inputCorrect);
+	}
+	page = Program::Pages::RECEIPT;
 }
-*/
-
-//void Program::EnterAccountDetails(){}
 
 void Program::CheckOutPage(){
 	system("clear");
@@ -198,28 +191,47 @@ void Program::CheckOutPage(){
 		outString = "";
 		outString = "\n\nYou have nothing in your basket at the moment";
 	}else{
-		outString = "";
+		outString = "\n\n\tPRODUCT\tPRICE\tQUANTITY\tTOTAL\n\n";
 		
 		for(int i = 0; i<basket.size(); i+=1){
 			if(basket[i].quantity>0){
 				list = static_cast<Product::Products>(i);
-				outString += product.GetName(list)+"\t"+std::to_string(product.GetPrice(list)) + "\n";
+				outString += "\t"+product.GetName(list)+"\t"
+				+"R"+std::to_string(product.GetPrice(list))+"\t"
+				+std::to_string(basket[i].quantity)+"\t"
+				+"R"+std::to_string(product.GetPrice(list) * basket[i].quantity)+"\n";
 			}
 		}
 	}
 	
 	std::cout<<outString;
 	
-	std::cout<<"\n\n[-1]\tGo to ACCOUNT";//IF yes send signal for Account page
-	
-	std::cout<<"\n\n[-2]\tGo to PRODUCTS";//IF yes send out signal to go to Products Page
+	std::cout<<"\n\n[-1]\tGo to ACCOUNT INFORMATION";//IF yes send signal for Account page
+	std::cout<<"\n\n[-2]\tGo to PRODUCTS\n";//IF yes send out signal to go to Products Page
 }
 
-//void Program::CheckOut(){}
+void Program::Reciept(){
+	CheckOutPage();
+	Product::Products list;
+	float total;
+	for(int i =0; i<basket.size(); i+=1){
+		if(basket[i].quantity>0){
+			total+=product.GetPrice(list)*basket[i].quantity; //charge = base_charge + items * item_charge
+		}
+	}
+	
+	std::string cuponBool;
+	std::cout<<"\n\n\t\tBase\tR";
+	std::cout<<"\n\t\tTotal\tR"+std::to_string(total);
+	std::cout<<"\n\tCupon Code? Y/N";
+	std::cin>>cuponBool;
+	
+	//if(){}else{}
+}
 
 
-void Program::Select(Pages currentPage){
-	std::cout<<"\n\nPlease select from the list above\n\n\n ";
+void Program::Select(Pages &currentPage){
+	std::cout<<"\n\nPlease select from the list above\n\n\n>> ";
 	int selection;
 	std::cin>>selection;
 	
@@ -236,8 +248,8 @@ void Program::Select(Pages currentPage){
 			break;
 			
 		case Program::Pages::ACCOUNT:
-			//EnterAccountDetails();
-			std::cout<<"enter account details\n";
+			
+			//std::cout<<"enter account details\n";
 			break;
 			
 		case Program::Pages::CHECKOUT:
@@ -245,13 +257,18 @@ void Program::Select(Pages currentPage){
 			//std::cout<<"Checkout\n";
 			CheckOutPage();
 			if(selection == -1){
-				currentPage=Program::Page::ACCOUNT;
-			}elseif(selection==-2){
-				currentPage=Program::Page::PRODUCTS;
+				currentPage=Program::Pages::ACCOUNT;
+				EnterAccountDetails();
+			}else if(selection == -2){
+				currentPage=Program::Pages::PRODUCTS;
 				ProductsPage();
 			}else{
-				std::cout<<"\nPlease enter from the available options\n"
+				std::cout<<"\nPlease enter from the available options\n";
 			}
+			break;
+		
+		case Program::Pages::RECEIPT:
+			std::cout<<"Reciept page\n";
 			break;
 	}
 }

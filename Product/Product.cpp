@@ -8,8 +8,8 @@ Product::Product(){
 
 Product::Product(Product::Products pName, int pQuantity){
 	name = pName;
-	price = 0;
-	quantity = 0;
+	price = prices[(int)pName];
+	quantity = pQuantity;
 }
 
 float Product::GetPrice(Product::Products product){

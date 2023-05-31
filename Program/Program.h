@@ -10,8 +10,11 @@ public:
 	enum Pages{
 		PRODUCTS,
 		ACCOUNT,
-		CHECKOUT
+		CHECKOUT,
+		RECEIPT
 	};
+	
+	Pages page;
 	
 	Program();
 	~Program();
@@ -19,17 +22,17 @@ public:
 	void ProductsPage();
 	void SelectProduct(int selection);
 	
-	void AccountPage();
-	//void EnterAccountDetails();
+	void EnterAccountDetails();
 	
 	void CheckOutPage();
+	
+	void Reciept();
 
-	void Select(Pages currentPage);
+	void Select(Pages &currentPage);
 	void Run();
 
 	
 private:
-	Pages page;
 	Product product;
 	std::array<Product, 14> basket {
 		Product(Product::Products::BREAD, 0),
@@ -48,4 +51,5 @@ private:
 		Product(Product::Products::DATA, 0),
 	};
 	Transaction transaction;
+	Transaction::Discount discount;
 };

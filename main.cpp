@@ -11,13 +11,15 @@
 
 int main(){
 	Program program;
-	program.CheckOutPage();
-	Program::Pages currentPage = Program::Pages::PRODUCTS;
-	program.Select(currentPage);
+	while(true){
+		program.Select(program.page);
+	}//program.Select(program.page);
 	//system("sleep 3");
 	//program.CheckOutPage();
 	//Transaction transA;
 	//Input in;
 	//in.GetInput();
+	
+	
 	return 0;
 }
