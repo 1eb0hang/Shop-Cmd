@@ -5,3 +5,7 @@ run.*
 ./build
 
 *.o
+
+*.stackdump
+*.zip
+ *.exe
